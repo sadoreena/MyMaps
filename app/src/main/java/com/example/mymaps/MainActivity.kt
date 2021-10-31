@@ -1,16 +1,20 @@
 package com.example.mymaps
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.UserManager
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mymaps.models.Place
 import com.example.mymaps.models.UserMap
 
 private lateinit var rvMaps: RecyclerView
+private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,8 +26,14 @@ class MainActivity : AppCompatActivity() {
         rvMaps.layoutManager = LinearLayoutManager(this)
 
         // Set adapter on Recycler View
-        rvMaps.adapter = MapsAdapter(this, UserMaps)
-
+        rvMaps.adapter = MapsAdapter(this, UserMaps, object: MapsAdapter.OnClickListener {
+            override fun onItemClick(position: Int) {
+                Log.i(TAG, "onItemClick $position")
+                // When user taps on view, navigate to new activity
+                val intent = Intent(this@MainActivity, DisplayMapActivity::class.java)
+                startActivity(intent)
+            }
+        })
     }
 
     private fun generateSampleData(): List<UserMap> {
