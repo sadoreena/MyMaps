@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mymaps.models.Place
 import com.example.mymaps.models.UserMap
 
+const val EXTRA_USER_MAP = "EXTRA_USER_MAP"
 private lateinit var rvMaps: RecyclerView
 private const val TAG = "MainActivity"
 
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
                 Log.i(TAG, "onItemClick $position")
                 // When user taps on view, navigate to new activity
                 val intent = Intent(this@MainActivity, DisplayMapActivity::class.java)
+                intent.putExtra(EXTRA_USER_MAP, UserMaps[position])
                 startActivity(intent)
             }
         })
