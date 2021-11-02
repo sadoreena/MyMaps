@@ -10,25 +10,24 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.example.mymaps.databinding.ActivityDisplayMapBinding
-import com.example.mymaps.models.UserMap
-import com.google.android.gms.maps.model.LatLngBounds
+import com.example.mymaps.databinding.ActivityCreateMapBinding
+import com.google.android.gms.maps.model.Marker
 
-private const val TAG = "DisplayMapActivity"
-class DisplayMapActivity : AppCompatActivity(), OnMapReadyCallback {
+private const val TAG = "CreateMapActivity"
+class CreateMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-    private lateinit var binding: ActivityDisplayMapBinding
-    private lateinit var userMap: UserMap
+    private lateinit var binding: ActivityCreateMapBinding
+    private var markers: MutableList<Marker> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityDisplayMapBinding.inflate(layoutInflater)
+        binding = ActivityCreateMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        userMap = intent.getSerializableExtra(EXTRA_USER_MAP) as UserMap
-        supportActionBar?.title = userMap.title
+        supportActionBar?.title = intent.getStringExtra(EXTRA_MAP_TITLE)
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -47,14 +46,22 @@ class DisplayMapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        Log.i(TAG, "user map to render: ${userMap.title}")
-
-        val boundsBuilder = LatLngBounds.builder()
-        for (place in userMap.places) {
-            val latLng = LatLng(place.latitude, place.longitude)
-            boundsBuilder.include(latLng)
-            mMap.addMarker(MarkerOptions().position(latLng).title(place.title).snippet(place.description))
+        // delete a marker
+        mMap.setOnInfoWindowClickListener { markerToDelete ->
+            Log.i(TAG, "onWindowClickListener - delete this marker")
+            markers.remove(markerToDelete)
+            markerToDelete.remove()
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(boundsBuilder.build(), 1000, 1000, 0))
+
+
+        mMap.setOnMapLongClickListener { latLng ->
+            Log.i(TAG, "onMapLongClickListener")
+            val marker = mMap.addMarker(MarkerOptions().position(latLng).title("My New Marker").snippet("a cool snippet"))
+            markers.add(marker)
+        }
+        // Add a marker in Sydney and move the camera
+        val sydney = LatLng(-34.0, 151.0)
+        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 }
