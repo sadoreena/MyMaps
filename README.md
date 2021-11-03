@@ -17,6 +17,7 @@ The following **required** functionality is completed:
 The following **extensions** are implemented:
 
 * [x] Background color changed
+* [x] Button color changed
 * [x] Data persists after app is shut down
 
 ## Video Walkthrough
