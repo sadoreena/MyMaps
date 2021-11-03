@@ -24,7 +24,7 @@ The following **extensions** are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='<iframe src='https://gfycat.com/ifr/AlarmedPertinentGoldenmantledgroundsquirrel' frameborder='0' scrolling='no' allowfullscreen width='640' height='1388'></iframe>' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
