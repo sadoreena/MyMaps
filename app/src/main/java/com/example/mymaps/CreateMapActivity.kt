@@ -26,6 +26,14 @@ import com.example.mymaps.models.Place
 import com.example.mymaps.models.UserMap
 import com.google.android.gms.maps.model.Marker
 import com.google.android.material.snackbar.Snackbar
+import android.R
+
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+
+import com.google.android.gms.maps.model.BitmapDescriptor
+
+
+
 
 private const val TAG = "CreateMapActivity"
 class CreateMapActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -123,6 +131,8 @@ class CreateMapActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(this, "Title and Description must have non-empty values", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
+
+            val customMarker = BitmapDescriptorFactory.fromResource(R.drawable.google_pin)
             val marker = mMap.addMarker(MarkerOptions().position(latLng).title(title).snippet(description))
             markers.add(marker)
             dialog.dismiss()
