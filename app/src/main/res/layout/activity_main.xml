@@ -5,8 +5,8 @@
     android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#C34D4D"
-    android:foregroundTint="#9F3737"
+    android:backgroundTint="#DC8DA8"
+    android:foregroundTint="#DC8DA8"
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -23,6 +23,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:clickable="true"
+        app:backgroundTint="#DC8DA8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />
