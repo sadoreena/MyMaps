@@ -24,7 +24,7 @@ The following **extensions** are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://gfycat.com/ifr/AlarmedPertinentGoldenmantledgroundsquirrel' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+Link to GIF: https://gfycat.com/alarmedpertinentgoldenmantledgroundsquirrel
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
